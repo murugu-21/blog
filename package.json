@@ -51,7 +51,7 @@
     "url": "git+https://github.com/murugu-21/murugu-21.github.io.git"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d public",
     "dev": "gatsby develop",

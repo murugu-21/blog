@@ -1,4 +1,7 @@
 module.exports = {
+  // Served under murugappan.dev/blog (GitHub Pages project site under the
+  // user-site custom domain). Build with `gatsby build --prefix-paths`.
+  pathPrefix: `/blog`,
   siteMetadata: {
     title: `SDE Journey`,
     author: {
@@ -6,7 +9,7 @@ module.exports = {
       summary: `Hard-won lessons from building software that actually runs in production`,
     },
     description: `A Technical blog on my experiences in the tech industry`,
-    siteUrl: `https://murugu-21.github.io/`,
+    siteUrl: `https://murugappan.dev/blog`,
     social: {
       twitter: `murugu21`,
     },

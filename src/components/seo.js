@@ -32,11 +32,18 @@ const Seo = ({ description, lang, meta, title }) => {
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
-  // Self-referencing canonical: site origin + current path (no trailing-slash
-  // doubling, since siteUrl ends in "/" and pathname starts with "/").
+  // Self-referencing canonical. `pathname` already includes the pathPrefix
+  // (e.g. "/blog/..."), so build it from the site ORIGIN to avoid doubling the
+  // prefix when siteUrl itself contains the path (e.g. "https://murugappan.dev/blog").
   const { pathname } = useLocation()
-  const siteUrl = (site.siteMetadata?.siteUrl || ``).replace(/\/$/, ``)
-  const canonical = pathname ? `${siteUrl}${pathname}` : siteUrl
+  const rawSiteUrl = site.siteMetadata?.siteUrl || ``
+  let origin = rawSiteUrl.replace(/\/$/, ``)
+  try {
+    origin = new URL(rawSiteUrl).origin
+  } catch (e) {
+    /* keep fallback */
+  }
+  const canonical = pathname ? `${origin}${pathname}` : origin
 
   return (
     <Helmet
